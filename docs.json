@@ -1,0 +1,125 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "ScreenAnnotate:start() -> self",
+        "desc": "Start annotation mode (same as triggering the `toggle` hotkey while off).",
+        "doc": "Start annotation mode (same as triggering the `toggle` hotkey while off).",
+        "name": "start",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:start() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:stop() -> self",
+        "desc": "Stop annotation mode, clearing any freeze / drawings / zoom.",
+        "doc": "Stop annotation mode, clearing any freeze / drawings / zoom.",
+        "name": "stop",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:stop() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:toggle() -> self",
+        "desc": "Toggle annotation mode on / off.",
+        "doc": "Toggle annotation mode on / off.",
+        "name": "toggle",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:toggle() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:bindHotkeys(mapping) -> self",
+        "desc": "Binds hotkeys for ScreenAnnotate.",
+        "doc": "Binds hotkeys for ScreenAnnotate.\n\nParameters:\n * mapping - A table with any of the keys `toggle`, `freeze`, `exit`, each a `{ mods, key }` pair (e.g. `{ {\"ctrl\",\"alt\",\"cmd\"}, \"w\" }`). Missing keys fall back to `ScreenAnnotate.defaultHotkeys`. `toggle` is a global hotkey; `freeze` and `exit` are active only while annotation mode is on.\n\nReturns:\n * The ScreenAnnotate object",
+        "name": "bindHotkeys",
+        "notes": [],
+        "parameters": [
+          " * mapping - A table with any of the keys `toggle`, `freeze`, `exit`, each a `{ mods, key }` pair (e.g. `{ {\"ctrl\",\"alt\",\"cmd\"}, \"w\" }`). Missing keys fall back to `ScreenAnnotate.defaultHotkeys`. `toggle` is a global hotkey; `freeze` and `exit` are active only while annotation mode is on."
+        ],
+        "returns": [
+          " * The ScreenAnnotate object"
+        ],
+        "signature": "ScreenAnnotate:bindHotkeys(mapping) -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [],
+    "desc": "Screen annotation overlay for presenting: draw over the screen with the mouse, freeze it, zoom and pan -- all recorded like anything else on screen (unlike native macOS zoom).",
+    "doc": "Screen annotation overlay for presenting: draw over the screen with the mouse, freeze it, zoom and pan -- all recorded like anything else on screen (unlike native macOS zoom).\n\nThe screen is \"live\" until it is frozen (a screenshot is taken): the first drag, ctrl+left-click, or the freeze hotkey all freeze it. While frozen you can draw, zoom, and pan on the still image; the apps underneath stay inert. Unfreezing drops the screenshot and goes back to live, without leaving the mode.\n\nZoom and drawing both live on the frozen screenshot canvas, so they are drawn into a normal Hammerspoon window. macOS Accessibility zoom is applied by the display compositor *after* screen capture and is invisible to OBS; this one is recorded like anything else on screen. Drawings are anchored to the content, so they zoom and pan along with the frozen screen underneath them.\n\nctrl+shift+left-click uses the native macOS zoom instead (live, but not recorded); it needs System Settings > Accessibility > Zoom > \"Use keyboard shortcuts to zoom\" enabled.\n\nMouse controls (while active):\n  left-drag         draw a red pen line   (freezes on first drag)\n  right-drag        draw a yellow marker  (freezes on first drag)\n  shift+drag        draw an arrow      (red on left, yellow on right)\n  cmd+drag          draw a rectangle   (red on left, yellow on right)\n  left/right-click  ripple highlight      (works on the live screen too)\n  ctrl+left-click   freeze + toggle zoom (max <-> normal) at the cursor\n  ctrl+shift+lclick native macOS zoom (live, not recorded by OBS)\n  ctrl+scroll       zoom in / out (clamped between normal and max) at cursor\n  move (zoomed)     pan by holding the cursor at a screen edge (after a beat)\n  ctrl+right-click  clear + unfreeze (or cancel native zoom), stay in the mode\n\nKeyboard controls are configurable via `:bindHotkeys` (see `defaultHotkeys`):\n  toggle  turn annotation mode on / off          (default ctrl+alt+cmd+P)\n  freeze  toggle freeze (or cancel native zoom)   (default ctrl+F)\n  exit    exit annotation mode                    (default escape)\n\nVisual and behavioural tunables live in `ScreenAnnotate.config`; override any field after `hs.loadSpoon(\"ScreenAnnotate\")` and before `:start()`.\n\nDownload: https://github.com/thedenische/ScreenAnnotate.spoon",
+    "items": [
+      {
+        "def": "ScreenAnnotate:bindHotkeys(mapping) -> self",
+        "desc": "Binds hotkeys for ScreenAnnotate.",
+        "doc": "Binds hotkeys for ScreenAnnotate.\n\nParameters:\n * mapping - A table with any of the keys `toggle`, `freeze`, `exit`, each a `{ mods, key }` pair (e.g. `{ {\"ctrl\",\"alt\",\"cmd\"}, \"w\" }`). Missing keys fall back to `ScreenAnnotate.defaultHotkeys`. `toggle` is a global hotkey; `freeze` and `exit` are active only while annotation mode is on.\n\nReturns:\n * The ScreenAnnotate object",
+        "name": "bindHotkeys",
+        "notes": [],
+        "parameters": [
+          " * mapping - A table with any of the keys `toggle`, `freeze`, `exit`, each a `{ mods, key }` pair (e.g. `{ {\"ctrl\",\"alt\",\"cmd\"}, \"w\" }`). Missing keys fall back to `ScreenAnnotate.defaultHotkeys`. `toggle` is a global hotkey; `freeze` and `exit` are active only while annotation mode is on."
+        ],
+        "returns": [
+          " * The ScreenAnnotate object"
+        ],
+        "signature": "ScreenAnnotate:bindHotkeys(mapping) -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:start() -> self",
+        "desc": "Start annotation mode (same as triggering the `toggle` hotkey while off).",
+        "doc": "Start annotation mode (same as triggering the `toggle` hotkey while off).",
+        "name": "start",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:start() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:stop() -> self",
+        "desc": "Stop annotation mode, clearing any freeze / drawings / zoom.",
+        "doc": "Stop annotation mode, clearing any freeze / drawings / zoom.",
+        "name": "stop",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:stop() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "ScreenAnnotate:toggle() -> self",
+        "desc": "Toggle annotation mode on / off.",
+        "doc": "Toggle annotation mode on / off.",
+        "name": "toggle",
+        "notes": [],
+        "parameters": [],
+        "returns": [],
+        "signature": "ScreenAnnotate:toggle() -> self",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "name": "ScreenAnnotate",
+    "stripped_doc": "",
+    "submodules": [],
+    "type": "Module"
+  }
+]
